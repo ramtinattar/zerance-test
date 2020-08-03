@@ -1,0 +1,15 @@
+{% assign current_desc = blank %}
+{% for field in product.metafields.custom_description %}
+  {% assign color = field | first %}
+  {% assign desc = field | last %}
+  <span class="hide" data-color="{{ color | escape }}">
+    {{ desc }}
+  </span>
+  {% if color == product.selected_or_first_available_variant.option1 %}
+    {% assign current_desc = desc %}
+  {% endif %}
+{% endfor %}
+
+<p class="variant-description" data-variant-description>
+  {{ current_desc }}
+</p>

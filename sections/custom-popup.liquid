@@ -1,0 +1,152 @@
+<div data-popup-overlay data-popup-close class="popup__overlay">
+</div>
+
+<section id="section-{{ section.id }}" class="section" data-section-id="{{ section.id }}" data-section-type="custom-popup">
+  <div data-popup class="popup">
+    <div data-popup-close class="popup__quit">
+      ╳
+    </div>
+    <div class="grid">
+      <div class="grid__cell 1/2--lap-and-up">
+        <div class="relative fs-0">
+          <img class="popup__image" src="{{ section.settings.image | img_url : 'master' }}" alt="{{ section.settings.image.alt }}">
+          <div class="absolute popup__left-content">
+            <div class="popup__title">{{ section.settings.title }}</div>
+            <div class="popup__subtitle">{{ section.settings.subtitle }}</div>
+            <div class="popup__text">{{ section.settings.text }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="grid__cell 1/2--lap-and-up">
+        <div class="popup__right-content">
+          <img class="popup__logo" src="{{ section.settings.picto | img_url : 'master' }}" alt="{{ section.settings.picto.alt }}">
+          <div class="popup__title">{{ section.settings.title_right }}</div>
+          <div class="popup__text">{{ section.settings.text_right }}</div>
+          <div class="popup__newsletter-container">
+
+
+                  {% form 'customer' %}
+                    <div class="align-center red">
+                      {{ form.errors | default_errors }}
+                    </div>
+
+                    {% if form.posted_successfully? %}
+                    <script>
+                      window.location = "/pages/votre-inscription-a-bien-ete-prise-en-compte";
+                    </script>
+                    {% else %}
+                      {%- capture tags -%}
+                          add_to_cart_button interested
+                      {%- endcapture -%}
+                      <input type="hidden" id="contact_tags" name="contact[tags]" value="{{ tags | strip }}">
+                      <input
+                        class="input-field inline-field-input"
+                        name="contact[email]"
+                        type="email"
+                        placeholder="{{ 'general.general.email_placeholder' | t }}">
+                        {% comment %}
+                      <div class="rgpd-container">
+                        <div>
+
+                          <input required type="checkbox" id="rgpd" name="rgpd">
+                          <label for="rgpd">{{ section.settings.rgpd_checkbox }}</label>
+                        </div>
+                        {% endcomment %}
+                        <input
+                            class="inline-field-submit button secondary"
+                            name="subscribe"
+                            type="submit"
+                            value="S'INSCRIRE">
+                            {% comment %}
+                      </div>
+                      {% endcomment %}
+                    {% endif %}
+                  {% endform %}
+
+
+
+          </div>
+          <p class="popup__rgpd">
+            {{ section.settings.rgpd }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom popup",
+  "settings": [
+    {
+      "type" : "header",
+      "content" : "Left part"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sous-titre"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "text"
+    },
+    {
+      "type" : "header",
+      "content" : "Right part"
+    },
+    {
+      "type": "image_picker",
+      "id": "picto",
+      "label": "Picto"
+    },
+    {
+      "type": "text",
+      "id": "title_right",
+      "label": "Title "
+    },
+    {
+      "type": "text",
+      "id": "text_right",
+      "label": "Texte"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder mail",
+      "default": "default",
+      "info": "info",
+      "placeholder": "placeholder"
+    },
+    {
+      "type": "text",
+      "id": "cta",
+      "label": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "rgpd",
+      "default": "La société Brand Ministry agit en tant que Responsable de traitement ; nous traitons vos données personnelles pour vous tenir informé(e) de l'actualité de nos produits LIGHTSTONES. Vous pouvez à tout moment choisir de ne plus recevoir cette information. Conformément au RGPD, vous bénéficiez d'un droit d'accès, de rectification, d'opposition, de suppression, de limitation, de portabilité de vos données. Il vous suffit de nous envoyer votre demande par email à hello@lightstones.fr. Vous pouvez consulter notre Politique de protection des données pour en savoir plus.",
+      "label": "rgpd"
+    },
+    {
+      "type": "text",
+      "id": "rgpd_checkbox",
+      "label": "rgpd checkox",
+      "default": "Text opt-in"
+    }
+  ]
+}
+{% endschema %}

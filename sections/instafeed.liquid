@@ -1,0 +1,59 @@
+<section id="section-{{ section.id }}" class="section" data-section-id="{{ section.id }}" data-section-type="instafeed">
+  <div class="container">
+    <div class="instafeed">
+      <div class="grid">
+        {% for block in section.blocks %}
+          <div class="grid__cell 1/4">
+            {% unless block.settings.url == blank %}
+            <a href="{{ block.settings.url }}" target="_blank">
+            {% endunless %}
+              <img class="instafeed__image" src="{{ block.settings.image | img_url : 'master' }}" alt="{{ block.settings.image.alt }}">
+            {% unless block.settings.url == blank %}
+            </a>
+            {% endunless %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="align-center">
+      <a href="{{ section.settings.url }}" class="button">{{ section.settings.cta }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Instafeed",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta",
+      "label": "Call to action"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Url du cta"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Url",
+          "info": "optionnel"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

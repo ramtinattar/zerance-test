@@ -1,0 +1,131 @@
+<section id="section-{{ section.id }}" class="relative section" data-section-id="{{ section.id }}" data-section-type="home-custom-reviews">
+  <div class="home-custom-reviews">
+    <div class="relative">
+      <div class="home-custom-reviews__container">
+        <img class="reviews__image1" src="{{ section.settings.image1 | img_url : 'master' }}" alt="{{ section.settings.image1.alt }}">
+      </div>
+
+      <div class="reviews reviews1">
+        <div class="reviews__text">
+          {{ section.settings.review1 }}
+        </div>
+        <div>
+          <div class="reviews__author">
+            {{ section.settings.author1 }}
+          </div>
+          <div class="reviews__product">
+            {{ section.settings.product1 }}
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews reviews2">
+        <div class="reviews__text">
+          {{ section.settings.review2 }}
+        </div>
+        <div>
+          <div class="reviews__author">
+            {{ section.settings.author2 }}
+          </div>
+          <div class="reviews__product">
+            {{ section.settings.product2 }}
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews reviews3">
+        <div class="reviews__text">
+          {{ section.settings.review3 }}
+        </div>
+        <div>
+          <div class="reviews__author">
+            {{ section.settings.author3 }}
+          </div>
+          <div class="reviews__product">
+            {{ section.settings.product3 }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="relative reviews__image2-container">
+      <img class="reviews__image2" src="{{ section.settings.image2 | img_url : 'master' }}" alt="{{ section.settings.image2.alt }}">
+    </div>
+  </div>
+  <div data-animation class="absolute animation-logo">
+    <img class="" src="{{ section.settings.image | img_url : 'master' }}" alt="{{ section.settings.image.alt }}">
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom reviews",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image1",
+      "label": "Image right"
+    },
+    {
+      "type": "image_picker",
+      "id": "image2",
+      "label": "Image left bottom"
+    },
+    {
+      "type": "text",
+      "id": "review1",
+      "label": "Review 1"
+    },
+    {
+      "type": "text",
+      "id": "author1",
+      "label": "Author 1"
+    },
+    {
+      "type": "text",
+      "id": "product1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "review2",
+      "label": "Review 2"
+    },
+    {
+      "type": "text",
+      "id": "author2",
+      "label": "Author 2"
+    },
+    {
+      "type": "text",
+      "id": "product2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "review3",
+      "label": "Review 3"
+    },
+    {
+      "type": "text",
+      "id": "author3",
+      "label": "Author 3"
+    },
+    {
+      "type": "text",
+      "id": "product3",
+      "label": "Product 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image review"
+    }
+  ],
+	"presets": [
+		{
+			"name": "custom reviews",
+			"category": "Custom"
+		}
+	]
+}
+{% endschema %}
